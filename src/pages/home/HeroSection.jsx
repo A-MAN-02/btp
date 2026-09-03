@@ -1,8 +1,21 @@
 import { Link } from 'react-router-dom';
+import heroVideo from '../../assets/hero-bg.mp4'; 
 
 export default function HeroSection() {
   return (
     <section className="hero">
+      <div className="hero__video-bg" aria-hidden="true">
+        <video
+          className="hero__video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          src={heroVideo}
+        />
+        <div className="hero__video-overlay" />
+      </div>
+
       <div className="hero__grid-bg" aria-hidden="true" />
 
       <div className="hero__container">
@@ -129,8 +142,33 @@ export default function HeroSection() {
         .hero {
           position: relative;
           overflow: hidden;
-        //   padding: clamp(56px, 8vw, 96px) 0 clamp(48px, 7vw, 88px);
         }
+
+        .hero__video-bg {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          z-index: 0;
+        }
+
+        .hero__video {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%) rotate(-90deg) scale(0.4);
+  object-fit: cover;
+  filter: blur(3px) brightness(1) saturate(1.1);
+}
+
+.hero__video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(240, 246, 252, 0.1), rgba(234, 243, 251, 0.55));
+}
 
         .hero__grid-bg {
           position: absolute;
@@ -143,10 +181,12 @@ export default function HeroSection() {
           mask-image: radial-gradient(1100px 520px at 78% 20%, #000 0%, transparent 72%);
           opacity: 0.55;
           pointer-events: none;
+          z-index: 1;
         }
 
         .hero__container {
           position: relative;
+          z-index: 2;
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 clamp(20px, 4vw, 56px);
