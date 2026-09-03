@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-navy-deep: #0B1E3D;
+  --color-navy: #142B52;
+  --color-steel: #1B4B73;
+  --color-gold: #C9972C;
+  --color-gold-light: #E4B85C;
+  --color-bg: #F0F6FC;
+  --color-surface: #FFFFFF;
+  --color-text-main: #0B1E3D;
+  --color-text-muted: #5A6472;
+  --color-border: rgba(11, 30, 61, 0.1);
+
+  --font-display: Cambria, Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', Calibri, ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  /* premium soft gradient instead of a flat color */
+  background:
+    radial-gradient(1200px 500px at 15% -10%, rgba(201, 151, 44, 0.08), transparent),
+    radial-gradient(1200px 600px at 100% 0%, rgba(27, 75, 115, 0.10), transparent),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.placeholder {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.placeholder h1 {
+  font-size: 28px;
+  color: var(--color-navy-deep);
+}
