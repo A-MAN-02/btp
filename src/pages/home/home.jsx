@@ -3,6 +3,7 @@ import HeroSection from './HeroSection';
 import TrustStrip from './TrustStrip';
 import AnswerSection from './AnswerSection';
 import ProblemSection from './ProblemSection';
+import ProcessPreview from './ProcessPreview';
 
 // Next sections to add here in order:
 // TrustStrip, ProblemSection, AnswerSection, ProcessPreview,
@@ -16,6 +17,7 @@ export default function Home() {
       <TrustStrip />
       <ProblemSection />
       <AnswerSection />
+      <ProcessPreview />
     </>
   );
 }

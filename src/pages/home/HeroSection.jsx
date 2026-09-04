@@ -139,7 +139,17 @@ export default function HeroSection() {
         .hero {
           position: relative;
           overflow: hidden;
-          
+          min-height: 88vh;
+          display: flex;
+          align-items: center;
+          padding: 56px 0 64px;
+        }
+
+        @media (max-width: 900px) {
+          .hero {
+            min-height: auto;
+            padding: 130px 0 48px;
+          }
         }
 
         .hero__image-bg {
@@ -156,13 +166,22 @@ export default function HeroSection() {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.55;
+  opacity: 0.62;
 }
 
 .hero__image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(240, 246, 252, 0.1), rgba(234, 243, 251, 0.55));
+  background:
+    linear-gradient(90deg, rgba(240, 246, 252, 0.98) 0%, rgba(240, 246, 252, 0.9) 28%, rgba(240, 246, 252, 0.5) 48%, rgba(240, 246, 252, 0.14) 74%, rgba(240, 246, 252, 0.06) 100%),
+    linear-gradient(180deg, rgba(240, 246, 252, 0.05), rgba(234, 243, 251, 0.2));
+}
+
+@media (max-width: 900px) {
+  .hero__image-overlay {
+    background:
+      linear-gradient(180deg, rgba(240, 246, 252, 0.92), rgba(240, 246, 252, 0.86) 55%, rgba(234, 243, 251, 0.7));
+  }
 }
 
         .hero__grid-bg {
@@ -182,6 +201,7 @@ export default function HeroSection() {
         .hero__container {
           position: relative;
           z-index: 2;
+          width: 100%;
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 clamp(20px, 4vw, 56px);
