@@ -178,10 +178,10 @@ export default function HeroSection() {
 }
 
 @media (max-width: 900px) {
-  .hero__image-overlay {
+ /* .hero__image-overlay {
     background:
       linear-gradient(180deg, rgba(240, 246, 252, 0.92), rgba(240, 246, 252, 0.86) 55%, rgba(234, 243, 251, 0.7));
-  }
+  } */
 }
 
         .hero__grid-bg {
