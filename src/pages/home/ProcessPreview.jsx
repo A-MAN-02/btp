@@ -169,8 +169,10 @@ export default function ProcessPreview() {
                       {step.icon}
                     </svg>
                   </span>
-                  <span className="process__node-num">{step.num}</span>
-                  <span className="process__node-title">{step.title}</span>
+                  <span className="process__node-text">
+                    <span className="process__node-num">{step.num}</span>
+                    <span className="process__node-title">{step.title}</span>
+                  </span>
                 </button>
                 {i < STEPS.length - 1 && (
                   <span className={`process__connector${i < active ? ' is-filled' : ''}`} aria-hidden="true" />
@@ -376,6 +378,10 @@ export default function ProcessPreview() {
           height: 19px;
         }
 
+        .process__node-text {
+          display: contents;
+        }
+
         .process__node:hover .process__node-icon {
           border-color: rgba(201, 151, 44, 0.5);
         }
@@ -579,16 +585,76 @@ export default function ProcessPreview() {
           }
         }
 
-        @media (max-width: 720px) {
+        /* ---------- Mobile stepper: wrap into a 2-col grid, no horizontal scroll ---------- */
+        @media (max-width: 760px) {
           .process {
             padding: 28px 0;
           }
-          .process__node {
-            width: 84px;
+
+          .process__track {
+            overflow-x: visible;
+            flex-wrap: wrap;
+            row-gap: 18px;
+            column-gap: 8px;
           }
+
+          .process__node-wrap {
+            flex: 0 1 auto;
+            width: calc(50% - 4px);
+          }
+
+          .process__node-wrap:last-child {
+            flex: 0 1 auto;
+          }
+
+          .process__connector {
+            display: none;
+          }
+
+          .process__node {
+            width: 100%;
+            flex-direction: row;
+            justify-content: flex-start;
+            text-align: left;
+            gap: 10px;
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+          }
+
+          .process__node.is-active {
+            border-color: var(--color-gold);
+            background: rgba(201, 151, 44, 0.06);
+          }
+
+          .process__node-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+          }
+
+          .process__node-icon svg {
+            width: 16px;
+            height: 16px;
+          }
+
+          .process__node-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            min-width: 0;
+          }
+
           .process__node-title {
-            font-size: 11.5px;
-            max-width: 82px;
+            max-width: 100%;
+            font-size: 12px;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .process__node-wrap {
+            width: 100%;
           }
         }
       `}</style>
