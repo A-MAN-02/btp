@@ -1,19 +1,16 @@
 import { Link } from 'react-router-dom';
-import heroVideo from '../../assets/hero-bg.mp4'; 
+import heroImage from '../../assets/hero-bg.jpeg'; // Adjust the path as necessary
 
 export default function HeroSection() {
   return (
     <section className="hero">
-      <div className="hero__video-bg" aria-hidden="true">
-        <video
-          className="hero__video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          src={heroVideo}
+      <div className="hero__image-bg" aria-hidden="true">
+        <img
+          className="hero__image"
+          src={heroImage}
+          alt=""
         />
-        <div className="hero__video-overlay" />
+        <div className="hero__image-overlay" />
       </div>
 
       <div className="hero__grid-bg" aria-hidden="true" />
@@ -142,29 +139,27 @@ export default function HeroSection() {
         .hero {
           position: relative;
           overflow: hidden;
+          
         }
 
-        .hero__video-bg {
+        .hero__image-bg {
           position: absolute;
           inset: 0;
           overflow: hidden;
           z-index: 0;
         }
 
-        .hero__video {
+        .hero__image {
   position: absolute;
-  top: 75%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%) rotate(-90deg) scale(0.4);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  filter: blur(3px) brightness(1) saturate(1.1);
+  object-position: center;
+  opacity: 0.55;
 }
 
-.hero__video-overlay {
+.hero__image-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(240, 246, 252, 0.1), rgba(234, 243, 251, 0.55));
