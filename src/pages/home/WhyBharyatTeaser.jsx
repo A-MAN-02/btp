@@ -85,12 +85,12 @@ export default function WhyBharyatTeaser() {
           <div className="why__labels">
             <span className="why__label why__label--generic">
               <span className="why__label-dot" />
-              usual_route.js
+              The Usual Route
             </span>
             <span className="why__vs">VS</span>
             <span className="why__label why__label--bharyat">
               <span className="why__label-dot" />
-              bharyat_route.js
+              The Bharyat Route
             </span>
           </div>
 
@@ -280,7 +280,7 @@ export default function WhyBharyatTeaser() {
         /* ---------- Panel labels ---------- */
         .why__labels {
           display: grid;
-          grid-template-columns: 0.8fr auto 1.25fr;
+          grid-template-columns: 0.8fr 34px 1.25fr;
           align-items: center;
           gap: 16px;
           padding: 14px clamp(16px, 3vw, 24px) 0;
@@ -290,13 +290,14 @@ export default function WhyBharyatTeaser() {
         .why__label {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          justify-self: start;
+          justify-content: center;
+          gap: 9px;
+          justify-self: center;
           font-family: 'Courier New', ui-monospace, monospace;
-          font-size: 13.5px;
+          font-size: 15px;
           font-weight: 700;
-          letter-spacing: 0.04em;
-          padding: 8px 16px;
+          letter-spacing: 0.02em;
+          padding: 10px 22px;
           border-radius: 999px;
         }
 
@@ -306,7 +307,6 @@ export default function WhyBharyatTeaser() {
         }
 
         .why__label--bharyat {
-          justify-self: end;
           color: var(--color-navy-deep);
           background: rgba(201, 151, 44, 0.16);
         }
