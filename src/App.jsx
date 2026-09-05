@@ -15,7 +15,11 @@ export default function App() {
   return (
     <div>
       <Header />
-      <main>
+      {/* Header is now position: fixed (sticky was breaking if any ancestor
+          ever gets an overflow/transform), so it no longer occupies space in
+          the normal flow. This padding-top (matching the header's height)
+          keeps page content from starting underneath it. */}
+      <main style={{ paddingTop: '78px' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<Placeholder name="About" />} />

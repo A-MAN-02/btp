@@ -139,6 +139,8 @@ export default function IndustriesStrip() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .industries {
           position: relative;
           background: var(--color-surface);
@@ -184,7 +186,7 @@ export default function IndustriesStrip() {
 
         .industries__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(24px, 3vw, 34px);
           line-height: 1.25;
@@ -211,7 +213,7 @@ export default function IndustriesStrip() {
         }
 
         .industries__stat-figure {
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: 36px;
           line-height: 1;

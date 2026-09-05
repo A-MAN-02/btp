@@ -129,6 +129,8 @@ export default function AIScreeningCard() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .ai-screen {
           position: relative;
           width: 100%;
@@ -251,7 +253,7 @@ export default function AIScreeningCard() {
         .ai-screen__match--2 { animation-delay: ${SCAN_MS + 260}ms; }
 
         .ai-screen__ready {
-          font-size: 10.5px;
+          font-size: 11.5px;
           font-weight: 700;
           letter-spacing: 0.06em;
           text-transform: uppercase;
@@ -301,18 +303,18 @@ export default function AIScreeningCard() {
         }
 
         .ai-screen__score-text strong {
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-size: 18px;
           font-weight: 700;
           color: #fff;
         }
 
         .ai-screen__score-text span {
-          font-size: 8px;
+          font-size: 9.5px;
           font-weight: 700;
-          letter-spacing: 0.06em;
-          color: rgba(248, 245, 239, 0.55);
-          margin-top: 2px;
+          letter-spacing: 0.05em;
+          color: rgba(248, 245, 239, 0.6);
+          margin-top: 3px;
         }
 
         .ai-screen__scorebar {

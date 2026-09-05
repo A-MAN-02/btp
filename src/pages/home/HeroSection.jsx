@@ -144,6 +144,8 @@ export default function HeroSection() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .hero {
           position: relative;
           overflow: hidden;
@@ -249,7 +251,7 @@ export default function HeroSection() {
 
         .hero__headline {
           margin: 0 0 22px;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(2.3rem, 4.6vw, 3.7rem);
           line-height: 1.12;

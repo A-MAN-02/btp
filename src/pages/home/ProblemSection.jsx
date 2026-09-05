@@ -185,6 +185,8 @@ export default function ProblemSection() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .problem {
           position: relative;
           padding: clamp(64px, 9vw, 108px) 0;
@@ -354,7 +356,7 @@ export default function ProblemSection() {
 
         .problem__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(24px, 3vw, 33px);
           line-height: 1.32;
@@ -413,7 +415,7 @@ export default function ProblemSection() {
 
         .problem__item-index {
           flex: none;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-size: 12px;
           font-weight: 700;
           color: rgba(248, 245, 239, 0.32);

@@ -275,6 +275,8 @@ export default function FinalCTA() {
       )}
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .final-cta {
           position: relative;
           background: var(--color-navy-deep);
@@ -332,7 +334,7 @@ export default function FinalCTA() {
 
         .final-cta__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 700;
           font-size: clamp(28px, 4vw, 42px);
           line-height: 1.2;
@@ -475,7 +477,7 @@ export default function FinalCTA() {
 
         .final-cta__modal-head h3 {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: 22px;
           color: var(--color-navy-deep);

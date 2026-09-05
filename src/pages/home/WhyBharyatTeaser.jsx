@@ -137,6 +137,8 @@ export default function WhyBharyatTeaser() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .why {
           position: relative;
           background: var(--color-surface);
@@ -183,7 +185,7 @@ export default function WhyBharyatTeaser() {
 
         .why__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(22px, 2.6vw, 30px);
           line-height: 1.25;
@@ -291,10 +293,10 @@ export default function WhyBharyatTeaser() {
           gap: 8px;
           justify-self: start;
           font-family: 'Courier New', ui-monospace, monospace;
-          font-size: 11px;
+          font-size: 13.5px;
           font-weight: 700;
-          letter-spacing: 0.06em;
-          padding: 6px 12px;
+          letter-spacing: 0.04em;
+          padding: 8px 16px;
           border-radius: 999px;
         }
 
@@ -332,7 +334,7 @@ export default function WhyBharyatTeaser() {
         }
 
         .why__vs {
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 700;
           font-size: 12px;
           letter-spacing: 0.06em;
@@ -519,6 +521,15 @@ export default function WhyBharyatTeaser() {
           .why__label--bharyat {
             justify-self: stretch;
             justify-content: center;
+          }
+          /* Match the row order below: Bharyat's column is shown first on
+             mobile, so its label needs to lead here too, or the heading
+             above each stacked row points at the wrong content. */
+          .why__label--bharyat {
+            order: 1;
+          }
+          .why__label--generic {
+            order: 2;
           }
           .why__vs {
             display: none;

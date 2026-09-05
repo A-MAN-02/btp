@@ -148,6 +148,8 @@ export default function EngagementPreview() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .eng {
           position: relative;
           padding: clamp(36px, 5vw, 56px) 0;
@@ -189,7 +191,7 @@ export default function EngagementPreview() {
 
         .eng__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(22px, 2.6vw, 30px);
           line-height: 1.25;
@@ -357,7 +359,7 @@ export default function EngagementPreview() {
 
         .eng__detail-title {
           margin: 0 0 10px;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(19px, 2vw, 24px);
           color: var(--color-navy-deep);

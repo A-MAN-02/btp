@@ -132,6 +132,8 @@ export default function GroupStats() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .group-stats {
           position: relative;
           background: var(--color-bg);
@@ -169,7 +171,7 @@ export default function GroupStats() {
 
         .group-stats__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(24px, 3vw, 32px);
           line-height: 1.3;
@@ -247,7 +249,7 @@ export default function GroupStats() {
         .group-stats__corner--br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
 
         .group-stats__featured-num {
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 700;
           font-size: clamp(40px, 5vw, 58px);
           line-height: 1;
@@ -286,7 +288,7 @@ export default function GroupStats() {
 
         .group-stats__rail-num {
           flex: none;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 700;
           font-size: 22px;
           color: var(--color-gold);

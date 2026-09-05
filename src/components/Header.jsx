@@ -15,7 +15,7 @@ const NAV_LINKS = [
 ];
 
 // Header hides once you've scrolled past 100px and are moving down;
-// reveals again the moment you scroll up (matches the SourceQ reference).
+// reveals again the moment you scroll up.
 
 function scrollToSection(e, href) {
   const el = document.querySelector(href);
@@ -30,6 +30,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
+  const tickingRef = useRef(false);
   const closeMenu = () => setIsOpen(false);
 
   const handleNavClick = (e, href) => {
@@ -38,37 +39,42 @@ export default function Header() {
   };
 
   useEffect(() => {
-    const getScrollTop = (target) => {
-      if (target === document || target === window) {
-        return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      }
-      return target.scrollTop || 0;
+    // Plain window scroll — this page scrolls via the document/window itself
+    // (no overflow wrapper), so we don't need the capture-on-document trick.
+    // rAF-throttled so we read scrollY at most once per frame.
+    lastScrollY.current = window.scrollY || 0;
+
+    const onScroll = () => {
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+      requestAnimationFrame(() => {
+        const current = window.scrollY || 0;
+        const previous = lastScrollY.current;
+        const delta = current - previous;
+
+        setIsScrolled(current > 8);
+
+        // Ignore tiny jitters (e.g. iOS rubber-banding) so the header
+        // doesn't flicker; only react once there's a real, deliberate scroll.
+        if (Math.abs(delta) > 4) {
+          if (current > 100 && delta > 0) {
+            setIsHidden(true);
+          } else if (delta < 0) {
+            setIsHidden(false);
+          }
+          lastScrollY.current = current;
+        }
+
+        if (current <= 100) {
+          setIsHidden(false);
+        }
+
+        tickingRef.current = false;
+      });
     };
 
-    const onScroll = (e) => {
-      const target = e.target === document ? document : e.target;
-      const currentScrollPosition = getScrollTop(target);
-
-      setIsScrolled(currentScrollPosition > 8);
-
-      if (currentScrollPosition > lastScrollY.current && currentScrollPosition > 100) {
-        setIsHidden(true);
-      } else {
-        setIsHidden(false);
-      }
-      lastScrollY.current = currentScrollPosition;
-    };
-
-    // capture: true — catches a 'scroll' event fired on ANY scrollable element on
-    // the page (not just window), since plain scroll events don't bubble but are
-    // still visible during the capture phase on ancestors. This way it doesn't
-    // matter whether the page itself scrolls or some wrapper div does.
-    document.addEventListener('scroll', onScroll, { capture: true, passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      document.removeEventListener('scroll', onScroll, { capture: true });
-      window.removeEventListener('scroll', onScroll);
-    };
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   // Lock body scroll while the mobile menu is open
@@ -159,8 +165,10 @@ export default function Header() {
         * { box-sizing: border-box; }
 
         .header {
-          position: sticky;
+          position: fixed;
           top: 0;
+          left: 0;
+          right: 0;
           z-index: 50;
           width: 100%;
           height: 78px;

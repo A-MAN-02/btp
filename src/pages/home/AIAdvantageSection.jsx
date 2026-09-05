@@ -99,6 +99,8 @@ export default function AIAdvantageSection() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .aiadv {
           position: relative;
           background: var(--color-navy-deep);
@@ -154,7 +156,7 @@ export default function AIAdvantageSection() {
 
         .aiadv__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(26px, 3.2vw, 38px);
           line-height: 1.22;
@@ -246,7 +248,7 @@ export default function AIAdvantageSection() {
         }
 
         .aiadv__step-num {
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 0.04em;
@@ -255,7 +257,7 @@ export default function AIAdvantageSection() {
 
         .aiadv__step-title {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: 17px;
           line-height: 1.3;

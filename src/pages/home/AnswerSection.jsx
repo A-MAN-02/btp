@@ -112,6 +112,8 @@ export default function AnswerSection() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .answer {
           position: relative;
           background: var(--color-surface);
@@ -180,7 +182,7 @@ export default function AnswerSection() {
 
         .answer__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(24px, 3vw, 34px);
           line-height: 1.28;
@@ -248,7 +250,7 @@ export default function AnswerSection() {
         }
 
         .answer__photo-stat strong {
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-size: 26px;
           font-weight: 700;
           color: var(--color-gold-light);
@@ -303,7 +305,7 @@ export default function AnswerSection() {
         }
 
         .answer__pillar-num {
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-size: 13px;
           font-weight: 700;
           letter-spacing: 0.04em;
@@ -313,7 +315,7 @@ export default function AnswerSection() {
 
         .answer__pillar-title {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: 16px;
           color: var(--color-navy-deep);

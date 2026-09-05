@@ -122,6 +122,8 @@ export default function ExpertisePreview() {
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+
         .expertise {
           position: relative;
           background: var(--color-surface);
@@ -179,7 +181,7 @@ export default function ExpertisePreview() {
 
         .expertise__heading {
           margin: 0;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: clamp(22px, 2.6vw, 30px);
           line-height: 1.25;
@@ -305,7 +307,7 @@ export default function ExpertisePreview() {
 
         .expertise__card-title {
           margin: 0 0 10px;
-          font-family: var(--font-display);
+          font-family: 'Bruno Ace', var(--font-display);
           font-weight: 600;
           font-size: 16.5px;
           line-height: 1.28;
