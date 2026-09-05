@@ -50,7 +50,7 @@ export default function WhyBharyatTeaser() {
   }, []);
 
   return (
-    <section className="why" ref={sectionRef}>
+    <section className="why" id="why-bharyat" ref={sectionRef}>
       <div className="why__container">
         <div className="why__head why__reveal">
           <div>
@@ -278,7 +278,7 @@ export default function WhyBharyatTeaser() {
         /* ---------- Panel labels ---------- */
         .why__labels {
           display: grid;
-          grid-template-columns: 1fr auto 1fr;
+          grid-template-columns: 0.8fr auto 1.25fr;
           align-items: center;
           gap: 16px;
           padding: 14px clamp(16px, 3vw, 24px) 0;
@@ -394,7 +394,7 @@ export default function WhyBharyatTeaser() {
 
         .why__row {
           display: grid;
-          grid-template-columns: 1fr 34px 1fr;
+          grid-template-columns: 0.8fr 34px 1.25fr;
           align-items: stretch;
         }
 
@@ -421,6 +421,7 @@ export default function WhyBharyatTeaser() {
           background: linear-gradient(120deg, var(--color-navy-deep), var(--color-steel));
           color: rgba(248, 245, 239, 0.94);
           font-weight: 500;
+          font-size: 15px;
         }
 
         .why__icon {

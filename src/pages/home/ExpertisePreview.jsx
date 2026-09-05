@@ -60,7 +60,7 @@ export default function ExpertisePreview() {
   }, []);
 
   return (
-    <section className="expertise" ref={sectionRef}>
+    <section className="expertise" id="expertise" ref={sectionRef}>
       <div className="expertise__container">
         <div className="expertise__head expertise__reveal">
           <div>

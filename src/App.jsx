@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './pages/home/home';
 
 function Placeholder({ name }) {
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/contact" element={<Placeholder name="Contact" />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import heroImage from '../../assets/hero-bg.jpeg'; // Adjust the path as necessa
 
 export default function HeroSection() {
   return (
-    <section className="hero">
+    <section className="hero" id="hero">
       <div className="hero__image-bg" aria-hidden="true">
         <img
           className="hero__image"
@@ -71,43 +71,50 @@ export default function HeroSection() {
               </filter>
             </defs>
 
-            {/* traces */}
+            {/* traces — top row: Cloud / AI / Embedded, bottom row: HW/PCB / FPGA / RF */}
             <g className="trace-group">
-              <path className="trace" d="M250,250 L250,180 L110,180 L110,110" />
-              <path className="trace" d="M250,250 L250,70" />
-              <path className="trace" d="M250,250 L250,180 L390,180 L390,110" />
-              <path className="trace" d="M250,250 L250,320 L390,320 L390,390" />
-              <path className="trace" d="M250,250 L250,320 L110,320 L110,390" />
+              <path className="trace" d="M250,250 L250,170 L100,170 L100,90" />
+              <path className="trace" d="M250,250 L250,90" />
+              <path className="trace" d="M250,250 L250,170 L400,170 L400,90" />
+              <path className="trace" d="M250,250 L250,330 L100,330 L100,410" />
+              <path className="trace" d="M250,250 L250,410" />
+              <path className="trace" d="M250,250 L250,330 L400,330 L400,410" />
             </g>
 
             {/* vias */}
-            <circle className="via" cx="250" cy="180" r="3.5" />
-            <circle className="via" cx="110" cy="180" r="3.5" />
-            <circle className="via" cx="390" cy="180" r="3.5" />
-            <circle className="via" cx="250" cy="320" r="3.5" />
-            <circle className="via" cx="390" cy="320" r="3.5" />
-            <circle className="via" cx="110" cy="320" r="3.5" />
+            <circle className="via" cx="250" cy="170" r="3.5" />
+            <circle className="via" cx="100" cy="170" r="3.5" />
+            <circle className="via" cx="400" cy="170" r="3.5" />
+            <circle className="via" cx="250" cy="330" r="3.5" />
+            <circle className="via" cx="100" cy="330" r="3.5" />
+            <circle className="via" cx="400" cy="330" r="3.5" />
 
-            {/* endpoint badges */}
-            <g className="badge" transform="translate(110,110)">
-              <rect x="-34" y="-17" width="68" height="34" rx="7" className="badge-bg" />
-              <text textAnchor="middle" dy="5" className="badge-text">RF</text>
-            </g>
-            <g className="badge" transform="translate(250,70)">
-              <rect x="-38" y="-17" width="76" height="34" rx="7" className="badge-bg" />
-              <text textAnchor="middle" dy="5" className="badge-text">FPGA</text>
-            </g>
-            <g className="badge" transform="translate(390,110)">
+            {/* endpoint badges — top row */}
+            <g className="badge" transform="translate(100,90)">
               <rect x="-38" y="-17" width="76" height="34" rx="7" className="badge-bg" />
               <text textAnchor="middle" dy="5" className="badge-text">Cloud</text>
             </g>
-            <g className="badge" transform="translate(390,390)">
+            <g className="badge" transform="translate(250,90)">
               <rect x="-30" y="-17" width="60" height="34" rx="7" className="badge-bg" />
               <text textAnchor="middle" dy="5" className="badge-text">AI</text>
             </g>
-            <g className="badge" transform="translate(110,390)">
+            <g className="badge" transform="translate(400,90)">
               <rect x="-46" y="-17" width="92" height="34" rx="7" className="badge-bg" />
               <text textAnchor="middle" dy="5" className="badge-text">Embedded</text>
+            </g>
+
+            {/* endpoint badges — bottom row */}
+            <g className="badge" transform="translate(100,410)">
+              <rect x="-44" y="-17" width="88" height="34" rx="7" className="badge-bg" />
+              <text textAnchor="middle" dy="5" className="badge-text">HW/PCB</text>
+            </g>
+            <g className="badge" transform="translate(250,410)">
+              <rect x="-38" y="-17" width="76" height="34" rx="7" className="badge-bg" />
+              <text textAnchor="middle" dy="5" className="badge-text">FPGA</text>
+            </g>
+            <g className="badge" transform="translate(400,410)">
+              <rect x="-34" y="-17" width="68" height="34" rx="7" className="badge-bg" />
+              <text textAnchor="middle" dy="5" className="badge-text">RF</text>
             </g>
 
             {/* core */}
@@ -126,11 +133,12 @@ export default function HeroSection() {
             </g>
 
             {/* traveling signal pulses */}
-            <circle className="pulse pulse--1" r="4.5" filter="url(#softGlow)" />
-            <circle className="pulse pulse--2" r="4.5" filter="url(#softGlow)" />
-            <circle className="pulse pulse--3" r="4.5" filter="url(#softGlow)" />
-            <circle className="pulse pulse--4" r="4.5" filter="url(#softGlow)" />
-            <circle className="pulse pulse--5" r="4.5" filter="url(#softGlow)" />
+            <circle className="pulse pulse--cloud" r="4.5" filter="url(#softGlow)" />
+            <circle className="pulse pulse--ai" r="4.5" filter="url(#softGlow)" />
+            <circle className="pulse pulse--embedded" r="4.5" filter="url(#softGlow)" />
+            <circle className="pulse pulse--hwpcb" r="4.5" filter="url(#softGlow)" />
+            <circle className="pulse pulse--fpga" r="4.5" filter="url(#softGlow)" />
+            <circle className="pulse pulse--rf" r="4.5" filter="url(#softGlow)" />
           </svg>
         </div>
       </div>
@@ -419,49 +427,56 @@ export default function HeroSection() {
           transform-origin: 0 0;
         }
 
-        .pulse--1 { animation: travel1 3.4s ease-in-out infinite; animation-delay: 0s; }
-        .pulse--2 { animation: travel2 3.4s ease-in-out infinite; animation-delay: 0.5s; }
-        .pulse--3 { animation: travel3 3.4s ease-in-out infinite; animation-delay: 1s; }
-        .pulse--4 { animation: travel4 3.4s ease-in-out infinite; animation-delay: 1.5s; }
-        .pulse--5 { animation: travel5 3.4s ease-in-out infinite; animation-delay: 2s; }
+        .pulse--cloud    { animation: travelCloud 3.4s ease-in-out infinite; animation-delay: 0s; }
+        .pulse--ai       { animation: travelAI 3.4s ease-in-out infinite; animation-delay: 0.4s; }
+        .pulse--embedded { animation: travelEmbedded 3.4s ease-in-out infinite; animation-delay: 0.8s; }
+        .pulse--hwpcb    { animation: travelHwPcb 3.4s ease-in-out infinite; animation-delay: 1.2s; }
+        .pulse--fpga     { animation: travelFpga 3.4s ease-in-out infinite; animation-delay: 1.6s; }
+        .pulse--rf       { animation: travelRf 3.4s ease-in-out infinite; animation-delay: 2s; }
 
-        @keyframes travel1 {
+        @keyframes travelCloud {
           0%   { transform: translate(250px,250px); opacity: 0; }
           10%  { opacity: 1; }
-          33%  { transform: translate(250px,180px); }
-          66%  { transform: translate(110px,180px); }
+          33%  { transform: translate(250px,170px); }
+          66%  { transform: translate(100px,170px); }
           92%  { opacity: 1; }
-          100% { transform: translate(110px,110px); opacity: 0; }
+          100% { transform: translate(100px,90px); opacity: 0; }
         }
-        @keyframes travel2 {
+        @keyframes travelAI {
           0%   { transform: translate(250px,250px); opacity: 0; }
           10%  { opacity: 1; }
           92%  { opacity: 1; }
-          100% { transform: translate(250px,70px); opacity: 0; }
+          100% { transform: translate(250px,90px); opacity: 0; }
         }
-        @keyframes travel3 {
+        @keyframes travelEmbedded {
           0%   { transform: translate(250px,250px); opacity: 0; }
           10%  { opacity: 1; }
-          33%  { transform: translate(250px,180px); }
-          66%  { transform: translate(390px,180px); }
+          33%  { transform: translate(250px,170px); }
+          66%  { transform: translate(400px,170px); }
           92%  { opacity: 1; }
-          100% { transform: translate(390px,110px); opacity: 0; }
+          100% { transform: translate(400px,90px); opacity: 0; }
         }
-        @keyframes travel4 {
+        @keyframes travelHwPcb {
           0%   { transform: translate(250px,250px); opacity: 0; }
           10%  { opacity: 1; }
-          33%  { transform: translate(250px,320px); }
-          66%  { transform: translate(390px,320px); }
+          33%  { transform: translate(250px,330px); }
+          66%  { transform: translate(100px,330px); }
           92%  { opacity: 1; }
-          100% { transform: translate(390px,390px); opacity: 0; }
+          100% { transform: translate(100px,410px); opacity: 0; }
         }
-        @keyframes travel5 {
+        @keyframes travelFpga {
           0%   { transform: translate(250px,250px); opacity: 0; }
           10%  { opacity: 1; }
-          33%  { transform: translate(250px,320px); }
-          66%  { transform: translate(110px,320px); }
           92%  { opacity: 1; }
-          100% { transform: translate(110px,390px); opacity: 0; }
+          100% { transform: translate(250px,410px); opacity: 0; }
+        }
+        @keyframes travelRf {
+          0%   { transform: translate(250px,250px); opacity: 0; }
+          10%  { opacity: 1; }
+          33%  { transform: translate(250px,330px); }
+          66%  { transform: translate(400px,330px); }
+          92%  { opacity: 1; }
+          100% { transform: translate(400px,410px); opacity: 0; }
         }
 
         @keyframes coreBreathe {

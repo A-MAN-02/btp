@@ -1,17 +1,15 @@
-// import HeroSection from '../../components/home/HeroSection';
 import HeroSection from './HeroSection';
 import TrustStrip from './TrustStrip';
 import AnswerSection from './AnswerSection';
 import ProblemSection from './ProblemSection';
 import ProcessPreview from './ProcessPreview';
+import AIAdvantageSection from './AIAdvantageSection';
 import ExpertisePreview from './ExpertisePreview';
 import EngagementPreview from './EngagementPreview';
 import WhyBharyatTeaser from './WhyBharyatTeaser';
-
-// Next sections to add here in order:
-// TrustStrip, ProblemSection, AnswerSection, ProcessPreview,
-// ExpertisePreview, EngagementPreview, WhyBharyatTeaser,
-// IndustriesStrip, GroupStats, FinalCTA
+import IndustriesStrip from './IndustriesStrip';
+import GroupStats from './GroupStats';
+import FinalCTA from './FinalCTA';
 
 export default function Home() {
   return (
@@ -21,9 +19,13 @@ export default function Home() {
       <ProblemSection />
       <AnswerSection />
       <ProcessPreview />
+      <AIAdvantageSection />
       <ExpertisePreview />
       <EngagementPreview />
       <WhyBharyatTeaser />
+      <IndustriesStrip />
+      <GroupStats />
+      <FinalCTA />
     </>
   );
 }

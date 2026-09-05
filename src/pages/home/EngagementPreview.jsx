@@ -51,7 +51,7 @@ export default function EngagementPreview() {
   const model = MODELS[active];
 
   return (
-    <section className="eng">
+    <section className="eng" id="engagement">
       <div className="eng__container">
         <div className="eng__head">
           <div>
@@ -277,8 +277,8 @@ export default function EngagementPreview() {
 
         .eng__tab-title {
           flex: 1;
-          font-size: 13.5px;
-          font-weight: 600;
+          font-size: 15.5px;
+          font-weight: 700;
           line-height: 1.3;
         }
 
@@ -453,7 +453,7 @@ export default function EngagementPreview() {
           }
           .eng__tab-title {
             white-space: normal;
-            font-size: 12.5px;
+            font-size: 14px;
           }
           .eng__tab-chevron {
             display: none;

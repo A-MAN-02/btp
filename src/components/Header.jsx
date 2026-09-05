@@ -1,28 +1,74 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import logo from '../assets/logo.png';
 
+// Points at sections that already exist on the single home page.
+// Swap these back to routes once the standalone pages are built.
+// "Home" is covered by the logo, "Contact" by the Start a Search button —
+// no need to duplicate either here.
 const NAV_LINKS = [
-  { path: '/about', label: 'About' },
-  { path: '/services', label: 'Services' },
-  { path: '/how-we-work', label: 'How We Work' },
-  { path: '/expertise', label: 'Expertise' },
-  { path: '/industries', label: 'Industries' },
-  { path: '/why-bharyat', label: 'Why Bharyat' },
-  { path: '/team', label: 'Team' },
-  { path: '/contact', label: 'Contact' },
+  { href: '#how-we-work', label: 'How We Work' },
+  { href: '#ai-advantage', label: 'AI Advantage' },
+  { href: '#expertise', label: 'Expertise' },
+  { href: '#engagement', label: 'Engagement Models' },
+  { href: '#why-bharyat', label: 'Why Bharyat' },
+  { href: '#industries', label: 'Industries' },
 ];
+
+// Header hides once you've scrolled past 100px and are moving down;
+// reveals again the moment you scroll up (matches the SourceQ reference).
+
+function scrollToSection(e, href) {
+  const el = document.querySelector(href);
+  if (el) {
+    e.preventDefault();
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const closeMenu = () => setIsOpen(false);
 
+  const handleNavClick = (e, href) => {
+    scrollToSection(e, href);
+    closeMenu();
+  };
+
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 8);
-    onScroll();
+    const getScrollTop = (target) => {
+      if (target === document || target === window) {
+        return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      }
+      return target.scrollTop || 0;
+    };
+
+    const onScroll = (e) => {
+      const target = e.target === document ? document : e.target;
+      const currentScrollPosition = getScrollTop(target);
+
+      setIsScrolled(currentScrollPosition > 8);
+
+      if (currentScrollPosition > lastScrollY.current && currentScrollPosition > 100) {
+        setIsHidden(true);
+      } else {
+        setIsHidden(false);
+      }
+      lastScrollY.current = currentScrollPosition;
+    };
+
+    // capture: true — catches a 'scroll' event fired on ANY scrollable element on
+    // the page (not just window), since plain scroll events don't bubble but are
+    // still visible during the capture phase on ancestors. This way it doesn't
+    // matter whether the page itself scrolls or some wrapper div does.
+    document.addEventListener('scroll', onScroll, { capture: true, passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      document.removeEventListener('scroll', onScroll, { capture: true });
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   // Lock body scroll while the mobile menu is open
@@ -33,36 +79,38 @@ export default function Header() {
     };
   }, [isOpen]);
 
+  // Don't hide the header while the mobile menu is open
+  const hiddenClass = isHidden && !isOpen ? 'header--hidden' : '';
+
   return (
-    <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
+    <header className={`header ${isScrolled ? 'header--scrolled' : ''} ${hiddenClass}`}>
       <div className="header__container">
         {/* Div 1 — Logo */}
         <div className="header__logo">
-          <Link to="/" onClick={closeMenu}>
+          <a href="#hero" onClick={(e) => handleNavClick(e, '#hero')}>
             <img src={logo} alt="Bharyat Talent Partners" />
-          </Link>
+          </a>
         </div>
 
-        {/* Div 2 — Nav links */}
+        {/* Div 2 — Nav links (scroll to in-page sections) */}
         <nav className="header__nav">
           {NAV_LINKS.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              className={({ isActive }) =>
-                `header__link ${isActive ? 'header__link--active' : ''}`
-              }
+            <a
+              key={link.href}
+              href={link.href}
+              className="header__link"
+              onClick={(e) => scrollToSection(e, link.href)}
             >
               {link.label}
-            </NavLink>
+            </a>
           ))}
         </nav>
 
         {/* Div 3 — CTA + mobile toggle */}
         <div className="header__actions">
-          <Link to="/contact" className="header__btn">
+          <a href="#contact" className="header__btn" onClick={(e) => scrollToSection(e, '#contact')}>
             Start a Search
-          </Link>
+          </a>
 
           <button
             className={`header__toggle ${isOpen ? 'header__toggle--active' : ''}`}
@@ -84,20 +132,22 @@ export default function Header() {
       >
         <div className="header__mobile-list">
           {NAV_LINKS.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                `header__link ${isActive ? 'header__link--active' : ''}`
-              }
+            <a
+              key={link.href}
+              href={link.href}
+              className="header__link"
+              onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.label}
-            </NavLink>
+            </a>
           ))}
-          <Link to="/contact" onClick={closeMenu} className="header__mobile-btn">
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="header__mobile-btn"
+          >
             Start a Search
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -118,13 +168,19 @@ export default function Header() {
           backdrop-filter: blur(14px) saturate(160%);
           -webkit-backdrop-filter: blur(14px) saturate(160%);
           border-bottom: 1px solid rgba(27, 75, 115, 0.16);
-          transition: box-shadow 0.25s ease, background 0.25s ease, height 0.25s ease;
+          transition: box-shadow 0.25s ease, background 0.25s ease, height 0.25s ease,
+            transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          will-change: transform;
         }
 
         .header--scrolled {
           height: 68px;
           background: linear-gradient(135deg, rgba(210, 238, 253, 0.96), rgba(178, 222, 249, 0.92));
           box-shadow: 0 8px 24px -14px rgba(11, 30, 61, 0.35);
+        }
+
+        .header--hidden {
+          transform: translateY(-100%);
         }
 
         .header__container {
@@ -177,18 +233,14 @@ export default function Header() {
           padding: 8px 12px;
           border-radius: 999px;
           white-space: nowrap;
+          text-decoration: none;
+          cursor: pointer;
           transition: color 0.2s ease, background 0.2s ease;
         }
 
         .header__link:hover {
           color: var(--color-steel);
           background: rgba(27, 75, 115, 0.08);
-        }
-
-        .header__link--active {
-          color: var(--color-navy-deep);
-          font-weight: 700;
-          background: rgba(201, 151, 44, 0.14);
         }
 
         /* Div 3 — CTA + mobile toggle */
@@ -212,6 +264,8 @@ export default function Header() {
           background: linear-gradient(135deg, var(--color-navy-deep), var(--color-steel));
           box-shadow: 0 4px 14px rgba(11, 30, 61, 0.25);
           white-space: nowrap;
+          text-decoration: none;
+          cursor: pointer;
           transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
 
@@ -288,6 +342,7 @@ export default function Header() {
 
         .header__mobile-menu--open {
           max-height: 640px;
+          overflow-y: auto;
         }
 
         .header__mobile-list {
@@ -313,6 +368,14 @@ export default function Header() {
           padding: 14px;
           font-size: 14px;
           font-weight: 600;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .header {
+            transition: none;
+          }
         }
 
         /* Single, reliable breakpoint — nav + CTA hide together, hamburger takes over.

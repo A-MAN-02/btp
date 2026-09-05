@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import aiShortlistPhoto from '../../assets/ai-scored-shortlist.jpg';
 
 const AUTOPLAY_MS = 4200;
 
@@ -119,10 +120,10 @@ export default function ProcessPreview() {
   const activeStep = STEPS[active];
 
   return (
-    <section className={`process${isVisible ? ' process--visible' : ''}`} ref={sectionRef}>
+    <section className={`process${isVisible ? ' process--visible' : ''}`} id="how-we-work" ref={sectionRef}>
       <div className="process__container">
-        <div className="process__head">
-          <div>
+        <div className="process__top">
+          <div className="process__intro">
             <p className="process__eyebrow process__reveal">
               <span className="process__eyebrow-dot" aria-hidden="true" />
               How We Work
@@ -134,14 +135,24 @@ export default function ProcessPreview() {
               Seven steps, from job description to onboarded hire &mdash; with AI compressing
               the slow parts and engineers validating the parts that matter.
             </p>
+
+            <Link to="/how-we-work" className="process__cta process__reveal" style={{ transitionDelay: '150ms' }}>
+              See the Full Methodology
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
           </div>
 
-          <Link to="/how-we-work" className="process__cta process__reveal" style={{ transitionDelay: '150ms' }}>
-            See the Full Methodology
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
+          <div className="process__proof-photo process__reveal" style={{ transitionDelay: '160ms' }}>
+            <img
+              className="process__proof-img"
+              src={aiShortlistPhoto}
+              alt="Recruiter reviewing AI-matched candidate profiles on a laptop"
+            />
+            <div className="process__proof-glow" aria-hidden="true" />
+            <span className="process__proof-tag">AI-Scored Shortlist</span>
+          </div>
         </div>
 
         <div
@@ -222,13 +233,18 @@ export default function ProcessPreview() {
           padding: 0 clamp(16px, 3vw, 36px);
         }
 
-        .process__head {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          gap: 24px;
-          flex-wrap: wrap;
+        .process__top {
+          display: grid;
+          grid-template-columns: 1fr 1.05fr;
+          align-items: center;
+          gap: clamp(24px, 4vw, 48px);
           margin-bottom: clamp(24px, 3.5vw, 36px);
+        }
+
+        .process__intro {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
         }
 
         .process__eyebrow {
@@ -253,17 +269,17 @@ export default function ProcessPreview() {
 
         .process__heading {
           margin: 0;
-          max-width: 620px;
+          max-width: 480px;
           font-family: var(--font-display);
           font-weight: 600;
-          font-size: clamp(24px, 3.2vw, 36px);
+          font-size: clamp(24px, 3vw, 34px);
           line-height: 1.3;
           color: var(--color-navy-deep);
         }
 
         .process__body {
           margin: 12px 0 0;
-          max-width: 52ch;
+          max-width: 46ch;
           font-family: var(--font-body);
           font-size: 15.5px;
           line-height: 1.65;
@@ -275,6 +291,7 @@ export default function ProcessPreview() {
           display: inline-flex;
           align-items: center;
           gap: 9px;
+          margin-top: 22px;
           padding: 13px 22px;
           border-radius: 999px;
           border: 1.5px solid var(--color-border);
@@ -301,6 +318,62 @@ export default function ProcessPreview() {
 
         .process__cta:hover svg {
           transform: translateX(3px);
+        }
+
+        /* ---------- AI proof photo (right column) ---------- */
+        .process__proof-photo {
+          position: relative;
+          min-height: 300px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 1px solid var(--color-border);
+          box-shadow: 0 30px 60px -28px rgba(11, 30, 61, 0.4);
+        }
+
+        .process__proof-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .process__proof-glow {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(11, 30, 61, 0) 60%, rgba(11, 30, 61, 0.55) 100%);
+          pointer-events: none;
+        }
+
+        .process__proof-tag {
+          position: absolute;
+          left: 16px;
+          bottom: 16px;
+          background: rgba(11, 30, 61, 0.88);
+          color: var(--color-gold-light);
+          font-family: var(--font-body);
+          font-size: 11px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          font-weight: 700;
+          padding: 7px 12px;
+          border-radius: 999px;
+          border: 1px solid rgba(228, 184, 92, 0.3);
+        }
+
+        @media (max-width: 900px) {
+          .process__top {
+            grid-template-columns: 1fr;
+          }
+          .process__proof-photo {
+            min-height: 240px;
+            order: -1;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .process__proof-photo {
+            min-height: 200px;
+          }
         }
 
         /* ---------- Interactive stepper ---------- */
